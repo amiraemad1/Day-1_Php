@@ -30,26 +30,26 @@
 		}
 	</style>
 </head>
-
 <body>
+
 	<section id="contact">
-		<div>
-			<div>
+ <div>
+<div>
 
-				<div>
-					<h2>Contacts Us</h2>
-					<?php
-						// define variables and set to empty values
-						$nameErr = $emailErr = $messageErr = "";
-						$name = $email =$message = "";
-						$submitted = 0;
+	<div>
+		<h2>Contacts Us</h2>
+			<?php
+					// define variables and set to empty values
+				$nameErr = $emailErr = $messageErr = "";
+				$name = $email =$message = "";
+				$submitted = 0;
 
-						if ($_SERVER["REQUEST_METHOD"] == "POST") {
-						   if (empty($_POST["name"])) {
-							 $nameErr = "**Name is required";
-						   } else {
-							 $name = clean_data($_POST["name"]);
-							 $fill["name"] = $name;
+				if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			    if (empty($_POST["name"])) {
+			    $nameErr = "**Name is required";
+					} else {
+						 $name = clean_data($_POST["name"]);
+						 $fill["name"] = $name;
 							 // check if name only contains letters and whitespace
 							 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
 							   $nameErr = "**Invalid Name"; 
@@ -97,46 +97,47 @@
 			
 			
 					?>
+			<div>
+					<form name="contactus" method="post" action="index.php">
+				<div>
+				    <span>* Name, Email  are required fields.</span>
+				</div>
 					<div>
-						<form name="contactus" method="post" action="index.php">
-							<div>
-								<span>* Name, Email  are required fields.</span>
+				    	<div>
+							<span>Name</span>
+					</div>
+					<div>
+						<input type="text" name="name" placeholder="Name" value="<?php
+						if (isset($fill["name"]) && $submitted == 0) {
+							echo $fill["name"];
+							}?>">
+						<span class="<?php
+							if (empty($nameErr)) {
+						    echo "hidden";
+						 } else {
+							 echo "error";
+							}
+							?>"><?php echo $nameErr;?></span>
 							</div>
-							<div>
-								<div>
-									<span>Name</span>
-								</div>
-								<div>
-									<input type="text" name="name" placeholder="Name" value="<?php
-										if (isset($fill["name"]) && $submitted == 0) {
-											echo $fill["name"];
-										}?>">
-									<span class="<?php
-										if (empty($nameErr)) {
-											 echo "hidden";
-										   } else {
-											 echo "error";
-										}
-									?>"><?php echo $nameErr;?></span>
-								</div>
 							</div>
 						<div>
-								<div>
-									<span>Email</span>
-								</div>
+					<div>
+						<span>Email</span>
+					</div>
+
 					<div>
 						<input type="text" name="email" placeholder="Email Address" value="<?php
 						if (isset($fill["email"]) && $submitted == 0) {
-								echo $fill["email"];
-							}?>">
-							<span class="<?php
-								if (empty($emailErr)) {
-									 echo "hidden";
-									} else {
-										  echo "error";
-										}
-									?>"><?php echo $emailErr;?></span>
-								</div>
+						echo $fill["email"];
+						}?>">
+						<span class="<?php
+						if (empty($emailErr)) {
+						echo "hidden";
+						} else {
+						  echo "error";
+						}
+						?>"><?php echo $emailErr;?></span>
+						</div>
 							</div>
 							
 						<div>
